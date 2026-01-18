@@ -1,8 +1,11 @@
 <?xml version="1.0"?>
 <configuration>
   <appSettings>
-    <add key="cnn" value="Server=127.0.0.1;Initial Catalog=rdn2020;User ID=rdn2020Admin;Password=YOUR_DATABASE_PASSWORD;Persist Security Info=True;Connection Timeout=120;"/>
+    <add key="cnn" value="Server=127.0.0.1;Initial Catalog=rdn2020;User ID=rdn2020Admin;Password=YOUR_RDN2020_PASSWORD;Persist Security Info=True;Connection Timeout=120;"/>
     <add key="trconstr" value="Server=YOUR_TRACKING_SERVER_IP;Initial Catalog=TrackingReport;User ID=Tom;Password=YOUR_TRACKING_PASSWORD;Persist Security Info=True;Connection Timeout=120;"/>
+    <add key="omscnn" value="Server=localhost;Initial Catalog=OMS_ET;User ID=YOUR_OMS_USER;Password=YOUR_OMS_PASSWORD;Persist Security Info=True;Connection Timeout=120;"/>
+    <add key="datacnn" value="Server=localhost;Initial Catalog=Data;User ID=YOUR_DATA_USER;Password=YOUR_DATA_PASSWORD;Persist Security Info=True;Connection Timeout=120;"/>
+    <add key="demcnn" value="Server=localhost;Initial Catalog=dealeremailmarketing;User ID=YOUR_DEM_USER;Password=YOUR_DEM_PASSWORD;Persist Security Info=True;Connection Timeout=120;"/>
     <add key="InvalidLoginURL" value="LoginProblem.aspx"/>
     <add key="MailServer" value="Smtpout.secureserver.net"/>
     <add key="WebPath" value="http://www.rdn2020.com/"/>

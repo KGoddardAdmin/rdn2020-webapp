@@ -1,0 +1,47 @@
+<table width="100%">
+	<tr>
+		<td style="text-align:right; padding-right:2px; ">
+			Campaign Id :
+		</td>
+		<td style="text-align:left; padding-left:2px ">
+			@CampaignId
+		</td>
+	</tr>
+	<tr><td colspan="2" style="height:5px;">&nbsp;</td></tr>
+	<tr>
+		<td style="text-align:right; padding-right:2px; ">
+			Campaign Name :
+		</td>
+		<td style="text-align:left; padding-left:2px ">
+			@CampaignName
+		</td>
+	</tr>
+	<tr><td colspan="2" style="height:5px;">&nbsp;</td></tr>
+	<tr>
+		<td style="text-align:right; padding-right:2px; ">
+			Campaign Link :
+		</td>
+		<td style="text-align:left; padding-left:2px ">
+			@CampaignLink
+		</td>
+	</tr>
+	<tr><td colspan="2" style="height:5px;">&nbsp;</td></tr>
+	<tr>
+		<td style="text-align:right; padding-right:2px; ">
+			Subject :
+		</td>
+		<td style="text-align:left; padding-left:2px ">
+			@Subject
+		</td>
+	</tr>
+	<tr><td colspan="2" style="height:5px;">&nbsp;</td></tr>
+	<tr>
+		<td style="text-align:right; padding-right:2px; ">
+			Quanity Ordered :
+		</td>
+		<td style="text-align:left; padding-left:2px ">
+			@Quanity
+		</td>
+	</tr>			
+	<tr><td colspan="2" style="height:5px;">&nbsp;</td></tr>		
+</table>

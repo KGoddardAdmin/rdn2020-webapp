@@ -1,0 +1,147 @@
+﻿body
+{
+    font-size:62.5%; 
+    font-family: Verdana;
+    width:100%;
+    margin-top:0;
+    margin-left:0;
+}
+
+.header
+{
+    width: 100%;
+    height: 25px;
+    background-color: rgb(66,79,153);
+    color: white;
+    font-size:1.2em;
+    vertical-align:middle;
+}
+
+#ContentHeader
+{
+	padding-top:10px;
+    background-color:white; 
+    width:100%; 
+    font-size:1.2em;
+}
+
+.mainform
+{
+    background-color:white; 
+    width:100%; 
+    font-size:1.2em;
+}
+
+.mainformcontent
+{
+    margin-left:15px;
+}
+
+.footer
+{
+    background-color:white; 
+    width:100%; 
+    font-size:1.2em;
+}
+	
+.menubarBack
+{
+    background-color: Silver;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.menubarStaticMenu
+{
+    font-size: 1.2em;
+    font-family: Verdana;	
+}
+
+.menubarStaticMenuItem
+{
+    background-color: Silver;
+    color: Black;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-bottom: 3px;
+    padding-top: 3px;
+    border-right: silver 1px solid;
+    border-top: silver 1px solid;
+    border-left: silver 1px solid;
+    border-bottom: silver 1px solid;
+}
+
+.menubarStaticHover
+{
+    background-color: silver;
+    color: Black;
+    border-right: gray 1px solid;
+    border-top: gray 1px solid;
+    border-left: gray 1px solid;
+    border-bottom: gray 1px solid;
+}
+
+.menubarDynamicMenu
+{
+    font-size: 1.2em;
+    font-family: Verdana;
+    background-color: silver;
+    border-right: gray 1px solid;
+    border-top: gray 1px solid;
+    border-left: gray 1px solid;
+    border-bottom: gray 1px solid;
+    color: black;
+}
+
+.menubarDynamicMenuItem
+{
+    background-color: silver;
+    color: black;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-bottom: 3px;
+    padding-top: 3px;
+    border-right: rgb(66,79,153) 1px solid;
+    border-top: rgb(66,79,153) 1px solid;
+    border-left: rgb(66,79,153) 1px solid;
+    border-bottom: rgb(66,79,153) 1px solid;
+}
+
+.menubarDynamicHover
+{
+    background-color: rgb(255,100,18);
+    border-right: gray 1px solid;
+    border-top: gray 1px solid;
+    border-left: gray 1px solid;
+    border-bottom: gray 1px solid;
+    color: black;
+}
+
+.clear   /* This is to clear a line of floating divs */
+{   
+    background: none;
+    border: 0;
+    clear: both;
+    display: block;
+    float: none;
+    font-size: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
+.spacer
+{
+    font-size:0;
+    background-color:transparent;
+    height:15px;
+    display:block;
+    clear:both;
+}
+
+
+

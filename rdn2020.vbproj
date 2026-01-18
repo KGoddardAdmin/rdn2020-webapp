@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3AB85D08-EF1D-4FE8-8241-0E735F87FA9C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <StartupObject>rdn2020.Global</StartupObject>
+    <RootNamespace>rdn2020</RootNamespace>
+    <AssemblyName>rdn2020</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>Web</MyType>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <EnableXamlDebugging>true</EnableXamlDebugging>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <Imports>
+      <Import Namespace="System" />
+      <Import Namespace="System.Collections" />
+      <Import Namespace="System.Collections.Generic" />
+      <Import Namespace="System.Collections.Specialized" />
+      <Import Namespace="System.Configuration" />
+      <Import Namespace="System.Data" />
+      <Import Namespace="System.Data.SqlClient" />
+      <Import Namespace="System.Text" />
+      <Import Namespace="System.Text.RegularExpressions" />
+      <Import Namespace="System.Web" />
+      <Import Namespace="System.Web.Caching" />
+      <Import Namespace="System.Web.Configuration" />
+      <Import Namespace="System.Web.Profile" />
+      <Import Namespace="System.Web.Security" />
+      <Import Namespace="System.Web.SessionState" />
+      <Import Namespace="System.Web.UI" />
+      <Import Namespace="System.Web.UI.HtmlControls" />
+      <Import Namespace="System.Web.UI.WebControls" />
+      <Import Namespace="System.Web.UI.WebControls.WebParts" />
+      <Import Namespace="Microsoft.VisualBasic" />
+      <Import Namespace="Telerik" />
+    </Imports>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.IO" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ComponentModel" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportViewer.WebForms.10.0.40219.1\lib\Microsoft.ReportViewer.WebForms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportViewer.Common.10.0.40219.1\lib\Microsoft.ReportViewer.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Web.UI">
+      <HintPath>bin\Telerik.Web.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Reporting">
+      <HintPath>bin\Telerik.Reporting.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.ReportViewer.WebForms">
+      <HintPath>bin\Telerik.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="EclipseWebSolutions.DatePicker">
+      <HintPath>bin\EclipseWebSolutions.DatePicker.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Default.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Default.htm" />
+    <Content Include="P.aspx" />
+    <Content Include="P1.aspx" />
+    <Content Include="Process.aspx" />
+    <Content Include="ProcessPage.aspx" />
+    <Content Include="TP.aspx" />
+    <Content Include="Unsubscribe.aspx" />
+    <Content Include="V2P.aspx" />
+    <Content Include="V2P1.aspx" />
+    <Content Include="V2P2.aspx" />
+    <Content Include="remove.aspx" />
+    <Content Include="testing.aspx" />
+    <Content Include="testing1.aspx" />
+    <Content Include="PCopy.aspx" />
+    <Content Include="PNonJavaScriptProcess.aspx" />
+    <Content Include="PPage.aspx" />
+    <Content Include="PPage1.aspx" />
+    <Content Include="PPage2.aspx" />
+    <Content Include="NonJavaScriptProcess.aspx" />
+    <Content Include="MPage.aspx" />
+    <Content Include="P1Page.aspx" />
+    <Content Include="welcome.html" />
+    <Content Include="robots.txt" />
+    <Content Include="Controls\CheckJS.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Global.asax.vb">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.designer.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="P.aspx.vb">
+      <DependentUpon>P.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="P.aspx.designer.vb">
+      <DependentUpon>P.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="P1.aspx.vb">
+      <DependentUpon>P1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="P1.aspx.designer.vb">
+      <DependentUpon>P1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Process.aspx.vb">
+      <DependentUpon>Process.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Process.aspx.designer.vb">
+      <DependentUpon>Process.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProcessPage.aspx.vb">
+      <DependentUpon>ProcessPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProcessPage.aspx.designer.vb">
+      <DependentUpon>ProcessPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TP.aspx.vb">
+      <DependentUpon>TP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TP.aspx.designer.vb">
+      <DependentUpon>TP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Unsubscribe.aspx.vb">
+      <DependentUpon>Unsubscribe.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Unsubscribe.aspx.designer.vb">
+      <DependentUpon>Unsubscribe.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="V2P.aspx.vb">
+      <DependentUpon>V2P.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="V2P.aspx.designer.vb">
+      <DependentUpon>V2P.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="V2P1.aspx.vb">
+      <DependentUpon>V2P1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="V2P1.aspx.designer.vb">
+      <DependentUpon>V2P1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="V2P2.aspx.vb">
+      <DependentUpon>V2P2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="V2P2.aspx.designer.vb">
+      <DependentUpon>V2P2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="remove.aspx.vb">
+      <DependentUpon>remove.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="remove.aspx.designer.vb">
+      <DependentUpon>remove.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="testing.aspx.vb">
+      <DependentUpon>testing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="testing.aspx.designer.vb">
+      <DependentUpon>testing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="testing1.aspx.vb">
+      <DependentUpon>testing1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="testing1.aspx.designer.vb">
+      <DependentUpon>testing1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PCopy.aspx.vb">
+      <DependentUpon>PCopy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PCopy.aspx.designer.vb">
+      <DependentUpon>PCopy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PNonJavaScriptProcess.aspx.vb">
+      <DependentUpon>PNonJavaScriptProcess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PNonJavaScriptProcess.aspx.designer.vb">
+      <DependentUpon>PNonJavaScriptProcess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PPage.aspx.vb">
+      <DependentUpon>PPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PPage.aspx.designer.vb">
+      <DependentUpon>PPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PPage1.aspx.vb">
+      <DependentUpon>PPage1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PPage1.aspx.designer.vb">
+      <DependentUpon>PPage1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PPage2.aspx.vb">
+      <DependentUpon>PPage2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PPage2.aspx.designer.vb">
+      <DependentUpon>PPage2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NonJavaScriptProcess.aspx.vb">
+      <DependentUpon>NonJavaScriptProcess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NonJavaScriptProcess.aspx.designer.vb">
+      <DependentUpon>NonJavaScriptProcess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MPage.aspx.vb">
+      <DependentUpon>MPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MPage.aspx.designer.vb">
+      <DependentUpon>MPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="P1Page.aspx.vb">
+      <DependentUpon>P1Page.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="P1Page.aspx.designer.vb">
+      <DependentUpon>P1Page.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CheckJS.ascx.vb">
+      <DependentUpon>CheckJS.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CheckJS.ascx.designer.vb">
+      <DependentUpon>CheckJS.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Campaign.vb" />
+    <Compile Include="Client.vb" />
+    <Compile Include="DataManager.vb" />
+    <Compile Include="IO.vb" />
+    <Compile Include="Utilities.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="LGA4040.vbproj">
+      <Project>{4BC85D08-EF1D-4FE8-8241-0E735F87FA9D}</Project>
+      <Name>LGA4040</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>44300</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:44300/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

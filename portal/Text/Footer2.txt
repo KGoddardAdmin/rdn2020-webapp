@@ -1,0 +1,16 @@
+<table height="55px;" width="100%">
+	<tr><td height="10px">&nbsp;</td></tr>
+	<TR align="left">
+		<TD align="left">
+			<div style=" font-size:8px; color:#E6E6E6;">			
+			<b>To no longer recieve emails from us please click on the link below.</b><br>
+			<a style="color:#E6E6E6;" href="@WebPath/Unsubscripe.aspx"><em>@WebPath/Unsubscripe.aspx</em></a>
+			</div>			
+		</TD>
+	</TR>
+	<tr align="left">
+		<td align="left">
+			<div style=" font-size:8px; color:#E6E6E6;">JustOneVision.com - 123 Shivel Rd. - Hendersonville, TN. 37075</div>
+		</td>
+	</tr>		
+</table>

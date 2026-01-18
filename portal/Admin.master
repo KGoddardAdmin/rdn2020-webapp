@@ -1,0 +1,136 @@
+<%@ Master Language="VB" Inherits="portal.Admin" Codebehind="Admin.master.vb" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <title>rdn2020 - Administration Site</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=7" />
+    <link rel="stylesheet" href="Styles/admin.css" type="text/css" />
+</head>
+<body>
+    <form id="frmMain" runat="server">
+    <div style="border: black 1px solid; width:auto ; background-color: gray; overflow:auto">
+        <div class="header">
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <td>&nbsp;</td>
+                    <td style="font-size: 12px;"><b>rdn2020 - Administration</b></td>
+                </tr>
+            </table>
+        </div>
+        <div class="menubarBack">
+<asp:Menu ID="Menu1" runat="server" Orientation="Horizontal" StaticEnableDefaultPopOutImage="false" StaticDisplayLevels="1">
+    <StaticMenuStyle CssClass="menubarStaticMenu" />
+    <StaticHoverStyle CssClass="menubarStaticHover" />
+    <StaticMenuItemStyle CssClass="menubarStaticMenuItem" />
+    <DynamicMenuStyle CssClass="menubarDynamicMenu" />
+    <DynamicHoverStyle CssClass="menubarDynamicHover" />
+    <DynamicMenuItemStyle CssClass="menubarDynamicMenuItem" />
+<Items>
+    <asp:MenuItem Text="File" Value="NewClients">
+        <asp:MenuItem Text="New Client" Value="NewClient">
+            <asp:MenuItem Text="New Company" Value="NewCompany" NavigateUrl="ClientNew.aspx" ></asp:MenuItem>
+            <asp:MenuItem Text="New Contact" Value="NewContact" NavigateUrl="ContactNew.aspx" ></asp:MenuItem>
+        </asp:MenuItem>
+        <asp:MenuItem Text="New Account Rep" Value="NewAccountRep" NavigateUrl="SalesRepNew.aspx" ></asp:MenuItem>
+        <asp:MenuItem Text="New IO" Value="NewIO" NavigateUrl="IONew.aspx" ></asp:MenuItem>
+        <asp:MenuItem Text="New Campaign" Value="NewCampaign" >
+            <asp:MenuItem Text="New Click Campaign" Value="NewClick" NavigateUrl="CampaignCreate.aspx"  ></asp:MenuItem>
+            <asp:MenuItem Text="New Impression Campaign" Value="NewImpression" NavigateUrl="ImpressionCampaignCreate.aspx"  ></asp:MenuItem>
+        </asp:MenuItem>
+    </asp:MenuItem>
+    <asp:MenuItem Text="Edit" Value="Edit">
+       <asp:MenuItem Text="Edit Contact" Value="ContactEdit" NavigateUrl="ClientContactEdit.aspx"  ></asp:MenuItem>
+        <asp:MenuItem Text="Edit Campaign" Value="CampaignEdit" NavigateUrl="CampaignEdit.aspx"  ></asp:MenuItem>
+        
+    </asp:MenuItem>
+    <asp:MenuItem Text="Find" Value="FindCampaigns">
+        <asp:MenuItem Text="Creative" Value="ViewCreative" NavigateUrl="ViewCreative.aspx" ></asp:MenuItem>
+        <asp:MenuItem Text="Errors" Value="ViewErrors" NavigateUrl="ViewErrors.aspx" ></asp:MenuItem>
+    </asp:MenuItem>
+    
+    <asp:MenuItem Text="Accounting" Value="Accounting"></asp:MenuItem>
+    <asp:MenuItem Text="Reports" Value="Reports">
+        <asp:MenuItem Text="Domain" Value="DomainReport" NavigateUrl="ReportByDomain.aspx"></asp:MenuItem>
+        <asp:MenuItem Text="Shorted Campaigns" Value="ShortedCampaigns" NavigateUrl="ShortedCampaigns.aspx"></asp:MenuItem>
+        <asp:MenuItem Text="Daily" Value="DailyClicks" NavigateUrl="ReportDailyClicks.aspx" ></asp:MenuItem>    
+        <asp:MenuItem Text="Campaign" Value="CampaignClicks" NavigateUrl="ReportClicksByCampaign.aspx" ></asp:MenuItem>            
+        <asp:MenuItem Text="Daily Client List" Value="DailyClientLists" NavigateUrl="ClientCampaignNames.aspx"></asp:MenuItem>
+        <asp:MenuItem Text="Weekly Client List" Value="WeeklyClientLists" NavigateUrl="ClientWeeklyCampaignNames.aspx"></asp:MenuItem>
+    </asp:MenuItem>
+        
+    <asp:MenuItem Text="Lists" Value="Accounting">
+        <asp:MenuItem Text="Campaign" Value="CampaignList" NavigateUrl="CampaignList.aspx" ></asp:MenuItem>    
+    </asp:MenuItem>
+    
+    
+    <asp:MenuItem Text="Tools" Value="Tools">
+        <asp:MenuItem Text="Repair Campaign Links" Value="CorrectCampaignLinks" NavigateUrl="CorrectCampaignLinks.aspx" ></asp:MenuItem>   
+        <asp:MenuItem Text="Ezanga" Value="Ezanga">
+            <asp:MenuItem Text="Account" Value="EznagaAccount" NavigateUrl="EzangaAccount.aspx" ></asp:MenuItem>              
+            <asp:MenuItem Text="Campaign" Value="EznagaCampaign">
+                <asp:MenuItem Text="  Add  " Value="EznagaAddCampaign" NavigateUrl="EzangaCampaignAdd.aspx" ></asp:MenuItem>
+                <asp:MenuItem Text="  Edit  " Value="EznagaEditCampaign" NavigateUrl="EzangaCampaignEdit.aspx" ></asp:MenuItem>
+                <asp:MenuItem Text="Geo-Targeting" Value="EznagaGetTargetingCampaign" NavigateUrl="EzangaGeo_Targeting.aspx" ></asp:MenuItem>
+
+            </asp:MenuItem>              
+
+        </asp:MenuItem>
+        <asp:MenuItem Text="Send Seed" Value="Seed" NavigateUrl="Seed.aspx" ></asp:MenuItem>
+        <asp:MenuItem Text="Users" Value="Users">
+            <asp:MenuItem Text="New User" Value="Users" NavigateUrl="UsersCreateNew.aspx" ></asp:MenuItem>
+            <asp:MenuItem Text="Edit User" Value="EditUsers" NavigateUrl="UsersEdit.aspx" ></asp:MenuItem>
+        </asp:MenuItem>
+        <asp:MenuItem Text="Clear Ready To Send" Value="CampaignStatus" NavigateUrl="CampaignUpdateStatus.aspx" ></asp:MenuItem>         
+    </asp:MenuItem>
+	
+    <asp:MenuItem Text="Sites" Value="Sites">
+        <asp:MenuItem Text="AdvantageEmailStats" NavigateUrl="http://www.advantageemailstats.com" Target="advantageemailstats" />
+        <asp:MenuItem Text="BraodCastCampaignStats" NavigateUrl="http://www.broadcastcampaignstats.com" Target="broadcastcampaignstats" />
+        <asp:MenuItem Text="CampusMediaStats" NavigateUrl="http://www.campusmediastats.com" Target="campusmediastats" />
+        <asp:MenuItem Text="DailyHeraldEmailStats" NavigateUrl="http://www.dailyheraldemailstats.com" Target="dailyheraldemailstats" />
+        <asp:MenuItem Text="distinctivedemographix" NavigateUrl="http://www.distinctivedemographix.com" Target="distinctivedemographix" />
+        <asp:MenuItem Text="eautoquestreporting" NavigateUrl="http://www.eautoquestreporting.com" Target="eautoquestreporting" />
+        <asp:MenuItem Text="EmailCampaignReporting" NavigateUrl="http://www.emailcampaignreporting.com" Target="emailcampaignreporting" />
+        <asp:MenuItem Text="e-ReportsOnline" NavigateUrl="http://www.e-reportsonline.com" Target="e-reportsonline" />
+        <asp:MenuItem Text="iTrackEmailStats" NavigateUrl="http://www.itrackemailstats.com" Target="itrackemailstats" />
+        <asp:MenuItem Text="LamarkCampaignStats" NavigateUrl="http://www.lamarkcampaignstats.com" Target="lamarkcampaignstats" />
+        <asp:MenuItem Text="MeasuredMarketingReporting" NavigateUrl="http://www.measuredmarketingreporting.com" Target="measuredmarketingreporting" />
+        <asp:MenuItem Text="SpecialistsEmailStats" NavigateUrl="http://www.specialistsemailstats.com" Target="specialistsemailstats" />
+        <asp:MenuItem Text="Startribuneadvantagereporting" NavigateUrl="http://www.startribuneadvantagereporting.com" Target="startribuneadvantagereporting" />
+        <asp:MenuItem Text="T5EmailStats" NavigateUrl="http://www.t5emailstats.com" Target="t5emailstats" />
+        <asp:MenuItem Text="USDataEmailStats" NavigateUrl="http://www.usdataemailstats.com" Target="usdataemailstats" />
+        <asp:MenuItem Text="VentureControlsEmailStats" NavigateUrl="http://www.venturecontrolsemailstats.com" Target="venturecontrolsemailstats" />
+        <asp:MenuItem Text="e-trackingreports" NavigateUrl="http://www.e-trackingreports.com" Target="etrackingreport" />
+
+    </asp:MenuItem>
+
+</Items>
+</asp:Menu>
+                      
+        </div>
+        <asp:contentplaceholder id="mstHeader" runat="server">
+        </asp:contentplaceholder>
+        <asp:contentplaceholder id="mstMain" runat="server">
+        </asp:contentplaceholder>
+        <asp:contentplaceholder id="mstFooter" runat="server">
+        </asp:contentplaceholder>
+        <div class="footer">
+        <fieldset>
+            <%If LoggedIN = "False" Then%>
+            <p>
+                <em>You are not currently logged in...</em><br />
+                <a style="text-decoration:none; color:Black;" href="Login.aspx">Login</a>
+            </p>
+            <%Else%>
+            <p>
+                <em>You are currently logged in...<%=LoggedOnUser%> welcome back,</em><br />
+            </p>
+            <%End If%>
+        </fieldset>
+    </div>   
+    </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,207 @@
+Imports System.Data.SqlClient
+Imports System.Data
+Imports System.Net
+
+Partial Class P
+    Inherits System.Web.UI.Page
+
+    Private m_TargetLink As String
+    Private m_arCampaignLinkInfo(,) As String
+    Private m_Referrer As String
+    Private m_Ip As String
+    Private m_WebPath As String
+    Private m_strConn As String
+    Private m_CampaignId As Integer
+    Private m_arProcessedClickInfo(,) As String
+
+
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        m_Referrer = Request.ServerVariables("HTTP_REFERER")
+        m_Ip = Request.ServerVariables.Item("REMOTE_ADDR")
+        m_WebPath = ConfigurationManager.AppSettings("WebPath")
+        m_strConn = ConfigurationManager.AppSettings("cnn")
+
+        Dim fullOrigionalpath As String
+        Dim strProcessedClickInfo As String = String.Empty
+
+        Dim strCampaignLinkInfo As String = String.Empty
+        Dim TotalClicks As Integer
+        Dim LinkIndex As Integer
+
+        If Len(Trim(Request.QueryString.ToString)) > 0 Then
+            fullOrigionalpath = Request.QueryString("c")
+            'Declare the array and fill with string elements       
+            Dim arrfullOrigionalpath() As String = New String() {}
+            arrfullOrigionalpath = fullOrigionalpath.Split("~")
+            m_CampaignId = CInt(arrfullOrigionalpath(0))
+            If arrfullOrigionalpath.Length = 2 Then
+                m_TargetLink = m_WebPath & "Process.aspx?c=" & fullOrigionalpath
+                GoTo _END
+            End If
+            Dim randObj As New Random
+            Dim arclink As ArrayList = New ArrayList
+            Using cnn As New SqlConnection(m_strConn)
+                cnn.Open()
+                Using cmdFillCampaignInfoArray As New SqlCommand("Campaign_GetForProcessingByCampaignId", cnn)
+                    cmdFillCampaignInfoArray.CommandType = CommandType.StoredProcedure
+                    cmdFillCampaignInfoArray.Parameters.Add(New SqlParameter("@CampaignId", Data.SqlDbType.Int)).Value = m_CampaignId
+                    Using dtrFillCampaignInfoArray As SqlDataReader = cmdFillCampaignInfoArray.ExecuteReader
+                        If dtrFillCampaignInfoArray.HasRows Then
+                            While dtrFillCampaignInfoArray.Read
+                                Dim item As String
+                                item = dtrFillCampaignInfoArray("LinkId") & "|" & dtrFillCampaignInfoArray("Link") & "|" & dtrFillCampaignInfoArray("LinkPercent")
+                                arclink.Add(item)
+                            End While
+                        Else
+                            m_TargetLink = m_WebPath & "InactiveCampaign.aspx"
+                            GoTo _END
+                        End If
+                    End Using
+                End Using
+            End Using
+
+            m_arCampaignLinkInfo = New String(arclink.Count, 2) {}
+            'Set Random Link Index
+            LinkIndex = randObj.Next(0, arclink.Count)
+
+            For x As Integer = 0 To arclink.Count - 1
+                Dim arlinks() As String = New String() {}
+                arlinks = arclink(x).Split("|")
+                m_arCampaignLinkInfo(x, 0) = arlinks(0)
+                m_arCampaignLinkInfo(x, 1) = arlinks(1)
+                m_arCampaignLinkInfo(x, 2) = arlinks(2)
+                Array.Clear(arlinks, 0, arlinks.Length)
+            Next
+            arclink.Clear()
+
+            Dim arlink As New ArrayList
+            Using cnn As New SqlConnection(m_strConn)
+                cnn.Open()
+                Using cmdtest As New SqlCommand("Track_Click_ProcessingCounts", cnn)
+                    cmdtest.CommandType = CommandType.StoredProcedure
+                    cmdtest.Parameters.Add(New SqlParameter("@CampaignId", Data.SqlDbType.Int)).Value = m_CampaignId
+                    Using dtrtest As SqlDataReader = cmdtest.ExecuteReader
+                        While dtrtest.Read
+                            Dim item As String
+                            TotalClicks += dtrtest("TotalClicks")
+                            item = dtrtest("linkid") & "|" & dtrtest("TotalClicks")
+                            arlink.Add(item)
+                        End While
+                    End Using
+                End Using
+            End Using
+            m_arProcessedClickInfo = New String(arlink.Count, 2) {}
+            For x As Integer = 0 To arlink.Count - 1
+                Dim arlinks() As String = New String() {}
+                arlinks = arlink(x).Split("|")
+                m_arProcessedClickInfo(x, 0) = arlinks(0)
+                m_arProcessedClickInfo(x, 1) = arlinks(1)
+                Dim percent As Double = (arlinks(1) / TotalClicks) * 100
+                percent = percent \ 1
+                m_arProcessedClickInfo(x, 2) = percent
+                Array.Clear(arlinks, 0, arlinks.Length)
+            Next
+            arlink.Clear()
+
+            Dim foundlink As Boolean = False
+            Dim foundlinkindex As Integer
+
+            For a As Integer = 0 To m_arProcessedClickInfo.GetUpperBound(0)
+                If m_arProcessedClickInfo(a, 0) = m_arCampaignLinkInfo(LinkIndex, 0) Then
+                    foundlink = True
+                    foundlinkindex = a
+                    Dim ProcessPercent As Integer = m_arProcessedClickInfo(a, 2)
+                    Dim LinkPercent As Integer = m_arCampaignLinkInfo(LinkIndex, 2)
+                    If ProcessPercent < LinkPercent Then
+                        Dim lid As Integer = m_arCampaignLinkInfo(LinkIndex, 0)
+                        InsertClick(lid, m_arCampaignLinkInfo(LinkIndex, 1))
+                        Exit Sub
+                    End If
+                    Exit For
+                End If
+            Next
+
+            If foundlink = False Then
+                Dim lid As Integer = m_arCampaignLinkInfo(LinkIndex, 0)
+                InsertClick(lid, m_arCampaignLinkInfo(LinkIndex, 1))
+                Exit Sub
+            End If
+
+            'Check if all links have been processed at least once
+            For b As Integer = 0 To m_arCampaignLinkInfo.GetUpperBound(0)
+                Dim linkProcessed As Boolean = False
+                For c As Integer = 0 To m_arProcessedClickInfo.GetUpperBound(0)
+                    If m_arCampaignLinkInfo(b, 0) = m_arProcessedClickInfo(c, 0) Then
+                        linkProcessed = True
+                    End If
+                Next
+                If b < m_arCampaignLinkInfo.GetUpperBound(0) Then
+                    If linkProcessed = False Then
+                        Dim lid As Integer = m_arCampaignLinkInfo(b, 0)
+                        InsertClick(lid, m_arCampaignLinkInfo(b, 1))
+                        Exit Sub
+                    End If
+                End If
+            Next
+
+            For d As Integer = 0 To m_arCampaignLinkInfo.GetUpperBound(0)
+                For _e As Integer = 0 To m_arProcessedClickInfo.GetUpperBound(0)
+                    If m_arCampaignLinkInfo(d, 0) = m_arProcessedClickInfo(_e, 0) Then
+                        Dim LinkPercent As Integer = m_arCampaignLinkInfo(d, 2)
+                        Dim ProcessPercent As Integer = m_arProcessedClickInfo(_e, 2)
+                        If ProcessPercent < LinkPercent Then
+                            Dim lid As Integer = m_arCampaignLinkInfo(d, 0)
+                            InsertClick(lid, m_arCampaignLinkInfo(d, 1))
+                            Exit Sub
+                        End If
+                    End If
+                Next
+            Next
+            InsertClick(m_arCampaignLinkInfo(LinkIndex, 0), m_arCampaignLinkInfo(LinkIndex, 1))
+        Else
+            m_TargetLink = m_WebPath & "InactiveCampaign.aspx"
+            GoTo _END
+        End If
+        Exit Sub
+
+_END:
+        'Response.AddHeader("Location", m_TargetLink)
+        'Response.StatusCode = 301
+        'Response.End()
+    End Sub
+
+    Private Sub InsertClick(ByVal linkId As Integer, ByVal RURLlink As String)
+        Dim intMonth As Integer
+        Dim spToUse As String
+        intMonth = DatePart(DateInterval.Month, Date.Now)
+        spToUse = "Campaign_ProcessClick_" & intMonth
+        Using cnn As New SqlConnection(m_strConn)
+            cnn.Open()
+            Using cmdProcessClick As New SqlCommand(spToUse, cnn)
+                cmdProcessClick.CommandType = Data.CommandType.StoredProcedure
+                cmdProcessClick.Parameters.Add(New SqlParameter("@CampaignId", Data.SqlDbType.Int)).Value = m_CampaignId
+                cmdProcessClick.Parameters.Add(New SqlParameter("@LinkId", Data.SqlDbType.Int)).Value = linkId
+                cmdProcessClick.Parameters.Add(New SqlParameter("@Ip", Data.SqlDbType.NVarChar, 15)).Value = m_Ip
+                If Trim(Len(m_Referrer)) > 0 Or Trim(m_Referrer) <> String.Empty Then
+                    cmdProcessClick.Parameters.Add(New SqlParameter("@Referrer", Data.SqlDbType.NVarChar, 100)).Value = m_Referrer
+                Else
+                    cmdProcessClick.Parameters.Add(New SqlParameter("@Referrer", Data.SqlDbType.NVarChar, 100)).Value = DBNull.Value
+                End If
+                cmdProcessClick.ExecuteNonQuery()
+                If cnn.State = Data.ConnectionState.Open Then
+                    cnn.Close()
+                End If
+                If cnn.State = ConnectionState.Open Then
+                    cnn.Close()
+                End If
+            End Using
+        End Using
+
+        Array.Clear(m_arCampaignLinkInfo, 0, m_arCampaignLinkInfo.Length)
+        Array.Clear(m_arProcessedClickInfo, 0, m_arProcessedClickInfo.Length)
+        m_TargetLink = m_WebPath & "PPage.aspx?c=" & Server.UrlEncode(RURLlink)
+        'Response.AddHeader("Location", m_TargetLink)
+        'Response.StatusCode = 301
+        'Response.End()
+    End Sub
+End Class

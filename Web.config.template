@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<configuration>
+  <appSettings>
+    <add key="cnn" value="Server=127.0.0.1;Initial Catalog=rdn2020;User ID=rdn2020Admin;Password=YOUR_DATABASE_PASSWORD;Persist Security Info=True;Connection Timeout=120;"/>
+    <add key="trconstr" value="Server=YOUR_TRACKING_SERVER_IP;Initial Catalog=TrackingReport;User ID=Tom;Password=YOUR_TRACKING_PASSWORD;Persist Security Info=True;Connection Timeout=120;"/>
+    <add key="InvalidLoginURL" value="LoginProblem.aspx"/>
+    <add key="MailServer" value="Smtpout.secureserver.net"/>
+    <add key="WebPath" value="http://www.rdn2020.com/"/>
+    <add key="MyAdCampaignsToken" value="YOUR_MYADCAMPAIGNS_TOKEN" />
+  </appSettings>
+  <connectionStrings>
+    <add name="lga4040ConnectionString" connectionString="Data Source=127.0.0.1;Initial Catalog=rdn2020;User ID=rdn2020Admin;Password=YOUR_DATABASE_PASSWORD" providerName="System.Data.SqlClient"/>
+  </connectionStrings>
+  <system.web>
+    <httpRuntime requestValidationMode="2.0" />
+    <!-- <httpRuntime executionTimeout="18000" maxRequestLength="100000" shutdownTimeout="120"/>
+    <trust level="Medium" originUrl="" /> -->
+    <httpHandlers>
+      <add path="Reserved.ReportViewerWebControl.axd" verb="*" type="Microsoft.Reporting.WebForms.HttpHandler, Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" validate="false"/>
+      <add type="Telerik.ReportViewer.WebForms.HttpHandler, Telerik.ReportViewer.WebForms, Version=4.0.10.423, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" path="Telerik.ReportViewer.axd" verb="*" validate="true"/>
+    </httpHandlers>
+    <compilation debug="true" strict="false" explicit="true" targetFramework="4.0">
+      <assemblies>
+        <add assembly="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A"/>
+        <add assembly="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A"/>
+        <add assembly="Telerik.ReportViewer.WebForms, Version=4.0.10.423, Culture=neutral, PublicKeyToken=a9d7983dfcc261be"/>
+        <add assembly="Telerik.Reporting, Version=4.0.10.423, Culture=neutral, PublicKeyToken=a9d7983dfcc261be"/>
+        <add assembly="System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A"/>
+        <add assembly="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+        <add assembly="System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35"/>
+        <add assembly="System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A"/>
+        <add assembly="System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089"/>
+        <add assembly="System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089"/>
+        <add assembly="System.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A"/>
+        <add assembly="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A"/>
+        <add assembly="System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089"/>
+        <add assembly="System.EnterpriseServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A"/>
+      </assemblies>
+      <buildProviders>
+        <add extension=".rdlc" type="Microsoft.Reporting.RdlBuildProvider, Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"/>
+      </buildProviders>
+    </compilation>
+    <pages controlRenderingCompatibilityVersion="4.0">
+      <namespaces>
+        <clear/>
+        <add namespace="System"/>
+        <add namespace="System.Collections"/>
+        <add namespace="System.Collections.Specialized"/>
+        <add namespace="System.Configuration"/>
+        <add namespace="System.Text"/>
+        <add namespace="System.Text.RegularExpressions"/>
+        <add namespace="System.Web"/>
+        <add namespace="System.Web.Caching"/>
+        <add namespace="System.Web.SessionState"/>
+        <add namespace="System.Web.Security"/>
+        <add namespace="System.Web.Profile"/>
+        <add namespace="System.Web.UI"/>
+        <add namespace="System.Web.UI.WebControls"/>
+        <add namespace="System.Web.UI.WebControls.WebParts"/>
+        <add namespace="System.Web.UI.HtmlControls"/>
+        <add namespace="Telerik"/>
+      </namespaces>
+    </pages>
+    <!--
+            The <authentication> section enables configuration 
+            of the security authentication mode used by  
+            ASP.NET to identify an incoming user. 
+        -->
+    <authentication mode="Forms">
+      <forms loginUrl="~/Account/Login.aspx" timeout="2880" />
+    </authentication>
+    <!--
+            The <customErrors> section enables configuration 
+            of what to do if/when an unhandled error occurs 
+            during the execution of a request. Specifically, 
+            it enables developers to configure html error pages 
+            to be displayed in place of a error stack trace.
+-->
+    <customErrors mode="Off" defaultRedirect="GenericErrorPage.htm">
+      <error statusCode="403" redirect="NoAccess.htm"/>
+      <error statusCode="404" redirect="FileNotFound.htm"/>
+    </customErrors>
+    <sessionState timeout="60"/>
+    <!-- <trust level="Medium" originUrl="" processRequestInApplicationTrust="true" /> -->
+  </system.web>
+  <system.webServer>
+    <handlers>
+      <add name="Telerik.ReportViewer.axd_*" type="Telerik.ReportViewer.WebForms.HttpHandler, Telerik.ReportViewer.WebForms, Version=4.0.10.423, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" path="Telerik.ReportViewer.axd" verb="*" preCondition="integratedMode,runtimeVersionv2.0"/>
+    </handlers>
+    <validation validateIntegratedModeConfiguration="false"/>
+  </system.webServer>
+</configuration>
